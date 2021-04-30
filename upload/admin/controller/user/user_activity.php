@@ -166,25 +166,25 @@ class ControllerUserUserActivity extends Controller {
 		$this->response->setOutput($this->load->view('user/user_activity', $data));
 	}
 
-	public function addActivityAddUser(&$route, &$args = null, &$output = null) {
+	public function addActivityAddUser(&$route, &$args, &$output) {
 		if (isset($output) && !empty($output)) {
 			$this->model_user_user_activity->addActivity('create_user', $output);
 		}
 	}
 
-	public function addActivityEditUser(&$route, &$args = '', &$output = null) {
+	public function addActivityEditUser(&$route, &$args, &$output) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->model_user_user_activity->addActivity('edit_user', $args[0]);
 		}
 	}
 
-	public function addActivityDeleteUser(&$route, &$args = null, &$output = null) {
+	public function addActivityDeleteUser(&$route, &$args, &$output) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->model_user_user_activity->addActivity('delete_user', $args[0]);
 		}
 	}
 
-	public function addActivityForgottenUser(&$route, &$args = null, &$output = null) {
+	public function addActivityForgottenUser(&$route, &$args, &$output) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->load->model('user/user');
 
@@ -196,43 +196,43 @@ class ControllerUserUserActivity extends Controller {
 		}
 	}
 
-	public function addActivityResetUser(&$route, &$args = null, &$output = null) {
+	public function addActivityResetUser(&$route, &$args, &$output) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->model_user_user_activity->addActivity('reset_user', $args[0]);
 		}
 	}
 
-	public function addActivityAddProduct(&$route, &$args = null, &$output = null) {
+	public function addActivityAddProduct(&$route, &$args, &$output) {
 		if (isset($output) && !empty($output)) {
 			$this->model_user_user_activity->addActivity('create_product', $output);
 		}
 	}
 
-	public function addActivityAddCategory(&$route, &$args = null, &$output = null) {
+	public function addActivityAddCategory(&$route, &$args, &$outpu) {
 		if (isset($output) && !empty($output)) {
 			$this->model_user_user_activity->addActivity('create_category', $output);
 		}
 	}
 
-	public function addActivityAddStore(&$route, &$args = null, &$output = null) {
+	public function addActivityAddStore(&$route, &$args, &$output) {
 		if (isset($output) && !empty($output)) {
 			$this->model_user_user_activity->addActivity('create_store', $output);
 		}
 	}
 
-	public function addActivityEditProduct(&$route, &$args = null, &$output = null) {
+	public function addActivityEditProduct(&$route, &$args, &$output) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->model_user_user_activity->addActivity('update_product', $args[0]);
 		}
 	}
 
-	public function addActivityEditCategory(&$route, &$args = null, &$output = null) {
+	public function addActivityEditCategory(&$route, &$args, &$output) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->model_user_user_activity->addActivity('update_category', $args[0]);
 		}
 	}
 
-	public function addActivityEditStore(&$route, &$args = null, &$output = null) {
+	public function addActivityEditStore(&$route, &$args, &$output) {
 		if (isset($args[0]) && ($args[0] == 'config')) {
 			if (isset($args[2]) && !empty($args[2])) {
 				$store_id = $args[2];
@@ -244,19 +244,19 @@ class ControllerUserUserActivity extends Controller {
 		}
 	}
 
-	public function addActivityDeleteProduct(&$route, &$args = null, &$output = null) {
+	public function addActivityDeleteProduct(&$route, &$args, &$output) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->model_user_user_activity->addActivity('delete_product', $args[0]);
 		}
 	}
 
-	public function addActivityDeleteCategory(&$route, &$args = null, &$output = null) {
+	public function addActivityDeleteCategory(&$route, &$args, &$output) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->model_user_user_activity->addActivity('delete_category', $args[0]);
 		}
 	}
 
-	public function addActivityDeleteStore(&$route, &$args = null, &$output = null) {
+	public function addActivityDeleteStore(&$route, &$args, &$output) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->model_user_user_activity->addActivity('delete_store', $args[0]);
 		}
