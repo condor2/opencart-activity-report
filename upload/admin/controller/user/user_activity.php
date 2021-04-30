@@ -208,7 +208,7 @@ class ControllerUserUserActivity extends Controller {
 		}
 	}
 
-	public function addActivityAddCategory(&$route, &$args, &$outpu) {
+	public function addActivityAddCategory(&$route, &$args, &$output) {
 		if (isset($output) && !empty($output)) {
 			$this->model_user_user_activity->addActivity('create_category', $output);
 		}
