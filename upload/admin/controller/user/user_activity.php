@@ -14,13 +14,13 @@ class ControllerUserUserActivity extends Controller {
 		if (isset($this->request->get['filter_user'])) {
 			$filter_user = $this->request->get['filter_user'];
 		} else {
-			$filter_user = null;
+			$filter_user = '';
 		}
 
 		if (isset($this->request->get['filter_ip'])) {
 			$filter_ip = $this->request->get['filter_ip'];
 		} else {
-			$filter_ip = null;
+			$filter_ip = '';
 		}
 
 		if (isset($this->request->get['filter_date_start'])) {
@@ -36,7 +36,7 @@ class ControllerUserUserActivity extends Controller {
 		}
 
 		if (isset($this->request->get['page'])) {
-			$page = $this->request->get['page'];
+			$page = (int)$this->request->get['page'];
 		} else {
 			$page = 1;
 		}
@@ -66,25 +66,25 @@ class ControllerUserUserActivity extends Controller {
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true),
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true),
 			'text' => $this->language->get('text_home')
 		);
 
 		$data['breadcrumbs'][] = array(
-			'href' => $this->url->link('user/user_activity', 'token=' . $this->session->data['token'] . $url, true),
+			'href' => $this->url->link('user/user_activity', 'user_token=' . $this->session->data['user_token'] . $url, true),
 			'text' => $this->language->get('heading_title')
 		);
 
-		$data['activities'] = array();
+		$data['activities'] = [];
 
-		$filter_data = array(
+		$filter_data = [
 			'filter_user'       => $filter_user,
 			'filter_ip'         => $filter_ip,
 			'filter_date_start'	=> $filter_date_start,
 			'filter_date_end'	=> $filter_date_end,
 			'start'             => ($page - 1) * 20,
 			'limit'             => 20
-		);
+		];
 
 		$activity_total = $this->model_user_user_activity->getTotalUserActivities($filter_data);
 
@@ -111,10 +111,10 @@ class ControllerUserUserActivity extends Controller {
 			);
 
 			$replace = array(
-				$this->url->link('user/user/edit', 'token=' . $this->session->data['token'] . '&user_id=', true),
-				$this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=', true),
-				$this->url->link('catalog/category/edit', 'token=' . $this->session->data['token'] . '&category_id=', true),
-				$this->url->link('setting/store/edit', 'token=' . $this->session->data['token'] . '&store_id=', true),
+				$this->url->link('user/user/edit', 'user_token=' . $this->session->data['user_token'] . '&user_id=', true),
+				$this->url->link('catalog/product/edit', 'user_token=' . $this->session->data['user_token'] . '&product_id=', true),
+				$this->url->link('catalog/category/edit', 'user_token=' . $this->session->data['user_token'] . '&category_id=', true),
+				$this->url->link('setting/store/edit', 'user_token=' . $this->session->data['user_token'] . '&store_id=', true),
 			);
 
 			$data['activities'][] = array(
@@ -124,24 +124,7 @@ class ControllerUserUserActivity extends Controller {
 			);
 		}
 
-		$data['heading_title'] = $this->language->get('heading_title');
-
-		$data['text_list'] = $this->language->get('text_list');
-		$data['text_no_results'] = $this->language->get('text_no_results');
-		$data['text_confirm'] = $this->language->get('text_confirm');
-
-		$data['column_comment'] = $this->language->get('column_comment');
-		$data['column_ip'] = $this->language->get('column_ip');
-		$data['column_date_added'] = $this->language->get('column_date_added');
-
-		$data['entry_user'] = $this->language->get('entry_user');
-		$data['entry_ip'] = $this->language->get('entry_ip');
-		$data['entry_date_start'] = $this->language->get('entry_date_start');
-		$data['entry_date_end'] = $this->language->get('entry_date_end');
-
-		$data['button_filter'] = $this->language->get('button_filter');
-
-		$data['token'] = $this->session->data['token'];
+		$data['user_token'] = $this->session->data['user_token'];
 
 		$url = '';
 
@@ -165,7 +148,7 @@ class ControllerUserUserActivity extends Controller {
 		$pagination->total = $activity_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
-		$pagination->url = $this->url->link('user/user_activity', 'token=' . $this->session->data['token'] . $url . '&page={page}', true);
+		$pagination->url = $this->url->link('user/user_activity', 'user_token=' . $this->session->data['user_token'] . $url . '&page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
@@ -189,7 +172,7 @@ class ControllerUserUserActivity extends Controller {
 		}
 	}
 
-	public function addActivityEditUser(&$route, &$args = null, &$output = null) {
+	public function addActivityEditUser(&$route, &$args = '', &$output = null) {
 		if (isset($args[0]) && !empty($args[0])) {
 			$this->model_user_user_activity->addActivity('edit_user', $args[0]);
 		}

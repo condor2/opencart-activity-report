@@ -78,18 +78,18 @@ class ModelUserUserActivity extends Model {
 		return $query->rows;
 	}
 
-	public function getUsers($data = array()) {
+	public function getUsers($data = []) {
 		$sql = "SELECT *, CONCAT(firstname, ' ', lastname) AS name FROM `" . DB_PREFIX . "user`";
 
 		if (!empty($data['filter_user'])) {
 			$implode[] = "WHERE CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($data['filter_user']) . "%'";
 		}
 
-		$sort_data = array(
+		$sort_data = [
 			'username',
 			'status',
 			'date_added'
-		);
+		];
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
@@ -118,15 +118,5 @@ class ModelUserUserActivity extends Model {
 		$query = $this->db->query($sql);
 
 		return $query->rows;
-	}
-
-	public function uninstall() {
-		$this->load->model('extension/event');
-
-		$this->model_extension_event->deleteEvent('user_activity_login', 'admin/controller/common/login/index/after', 'model/user/user_activity/addActivity');
-
-		$this->model_extension_event->deleteEvent('user_activity', 'admin/controller/common/login/index/after', 'admin/controller/user/user_activity/addActivity');
-		
-		$this->model_extension_event->deleteEvent('user_activity', 'admin/model/catalog/product/editProduct/after', 'admin/controller/user/user_activity/addActivity');
 	}
 }

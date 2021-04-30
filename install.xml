@@ -2,8 +2,8 @@
 <modification>
 	<name><![CDATA[User Activity]]></name>
 	<code>User_Activity</code>
-	<version>1.0.1</version>
-	<author><![CDATA[iMateo & GixOC.ru]]></author>
+	<version>1.0.2</version>
+	<author><![CDATA[iMateo & GixOC.ru & xxvirusxx]]></author>
 
 	<file path="admin/controller/common/column_left.php">
 		<operation>
@@ -14,7 +14,7 @@
 			if ($this->user->hasPermission('access', 'user/user_activity')) {		
 				$user[] = array(
 					'name'	   => $this->language->get('text_user_activity'),
-					'href'     => $this->url->link('user/user_activity', 'token=' . $this->session->data['token'], true),
+					'href'     => $this->url->link('user/user_activity', 'user_token=' . $this->session->data['user_token'], true),
 					'children' => array()		
 				);	
 			}

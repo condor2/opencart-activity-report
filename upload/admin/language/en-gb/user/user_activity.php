@@ -1,9 +1,9 @@
 <?php
 // Heading
-$_['heading_title']        = 'Customer Activity Report';
+$_['heading_title']        = 'User Activity Report';
 
 // Text
-$_['text_list']            = 'Customer Activity List';
+$_['text_list']            = 'User Activity List';
 $_['text_user_activity']   = $_['heading_title'];
 
 // Account manage
@@ -25,13 +25,13 @@ $_['text_delete_category'] = '%s delete <a href="category_id=%d"> category</a>.'
 $_['text_delete_store']    = '%s edit <a href="store_id=%d"> setting store</a>.';
 
 // Column
-$_['column_user']          = 'Customer';
+$_['column_user']          = 'User';
 $_['column_comment']       = 'Comment';
 $_['column_ip']            = 'IP';
 $_['column_date_added']    = 'Date Added';
 
 // Entry
-$_['entry_user']           = 'Customer:';
+$_['entry_user']           = 'User:';
 $_['entry_ip']             = 'IP:';
 $_['entry_date_start']     = 'Date Start:';
 $_['entry_date_end']       = 'Date End:';
